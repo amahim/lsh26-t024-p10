@@ -61,17 +61,17 @@ export const CustomDataReconciler: React.FC = () => {
   };
 
   return (
-    <div className="glass-panel p-6 rounded-2xl border-slate-800 shadow-xl">
-      <div className="flex items-center gap-3 mb-6">
+    <div className="glass-panel p-4 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
+      <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
         <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
           <UploadCloud className="w-6 h-6" />
         </div>
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-base font-bold text-white tracking-tight">
-              Real Meter Recharge Reconciler & CSV Importer
+              Real Meter Recharge Reconciler
             </h3>
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hidden sm:inline">
               Audit Tool
             </span>
           </div>
@@ -82,7 +82,7 @@ export const CustomDataReconciler: React.FC = () => {
       </div>
 
       {/* Input Form */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div>
           <label className="block text-xs font-semibold text-slate-300 mb-1.5">
             Opening Balance (BDT)
@@ -120,7 +120,7 @@ export const CustomDataReconciler: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-end mb-6">
+      <div className="flex justify-end mb-4 sm:mb-6">
         <button
           onClick={handleSimulateCustom}
           className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-cyan-900/30 transition cursor-pointer"

@@ -30,18 +30,18 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
   );
 
   return (
-    <div className="glass-panel p-6 rounded-2xl border-slate-800 shadow-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+    <div className="glass-panel p-4 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div>
           <h3 className="text-base font-bold text-white tracking-tight">
             Granular Day-by-Day Meter Ledger
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-[10px] sm:text-xs text-slate-400 mt-0.5">
             Audit every single day's opening balance, progressive tariff slicing, fixed charges, and closing balance
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Search */}
           <div className="relative text-xs">
             <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-slate-400" />
@@ -53,18 +53,18 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
                 setSearchTerm(e.target.value);
                 setCurrentPage(1);
               }}
-              className="bg-slate-900 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-slate-200 focus:outline-none focus:border-emerald-500 w-44"
+              className="bg-slate-900 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-slate-200 focus:outline-none focus:border-emerald-500 w-full sm:w-44"
             />
           </div>
 
           {/* Filter */}
-          <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-xs">
+          <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-[10px] sm:text-xs overflow-x-auto">
             <button
               onClick={() => {
                 setFilterType("ALL");
                 setCurrentPage(1);
               }}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-2 sm:px-2.5 py-1 rounded-md transition whitespace-nowrap ${
                 filterType === "ALL"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold"
                   : "text-slate-400 hover:text-slate-200"
@@ -77,7 +77,7 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
                 setFilterType("RECHARGES");
                 setCurrentPage(1);
               }}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-2 sm:px-2.5 py-1 rounded-md transition whitespace-nowrap ${
                 filterType === "RECHARGES"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold"
                   : "text-slate-400 hover:text-slate-200"
@@ -90,7 +90,7 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
                 setFilterType("HIGH_SLAB");
                 setCurrentPage(1);
               }}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-2 sm:px-2.5 py-1 rounded-md transition whitespace-nowrap ${
                 filterType === "HIGH_SLAB"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold"
                   : "text-slate-400 hover:text-slate-200"
@@ -160,8 +160,8 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
       </div>
 
       {/* Ledger Table */}
-      <div className="overflow-x-auto rounded-xl border border-slate-800">
-        <table className="w-full text-left text-xs">
+      <div className="overflow-x-auto rounded-xl border border-slate-800 -mx-1 sm:mx-0">
+        <table className="w-full text-left text-[10px] sm:text-xs min-w-[700px]">
           <thead className="bg-slate-800/80 text-slate-300">
             <tr>
               <th className="p-3">Date</th>
@@ -236,7 +236,7 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="mt-4 flex items-center justify-between text-xs text-slate-400">
+        <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <span>
             Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
             {Math.min(currentPage * itemsPerPage, filteredTimeline.length)} of{" "}

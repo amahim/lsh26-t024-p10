@@ -53,19 +53,19 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
   });
 
   return (
-    <div className="glass-panel p-6 rounded-2xl border-slate-800 shadow-xl">
+    <div className="glass-panel p-4 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
             <Scale className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
                 Recharge Habits Comparative Simulation
               </h2>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">
+              <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20 hidden sm:inline">
                 Behavior Simulation
               </span>
             </div>
@@ -76,10 +76,10 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-xs">
+        <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-[11px] sm:text-xs overflow-x-auto">
           <button
             onClick={() => setActiveTab("summary")}
-            className={`px-3 py-1.5 rounded-md transition font-medium ${
+            className={`px-2 sm:px-3 py-1.5 rounded-md transition font-medium whitespace-nowrap ${
               activeTab === "summary"
                 ? "bg-violet-500/20 text-violet-300 border border-violet-500/30"
                 : "text-slate-400 hover:text-slate-200"
@@ -89,7 +89,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
           </button>
           <button
             onClick={() => setActiveTab("chart")}
-            className={`px-3 py-1.5 rounded-md transition font-medium ${
+            className={`px-2 sm:px-3 py-1.5 rounded-md transition font-medium whitespace-nowrap ${
               activeTab === "chart"
                 ? "bg-violet-500/20 text-violet-300 border border-violet-500/30"
                 : "text-slate-400 hover:text-slate-200"
@@ -99,7 +99,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
           </button>
           <button
             onClick={() => setActiveTab("monthly")}
-            className={`px-3 py-1.5 rounded-md transition font-medium ${
+            className={`px-2 sm:px-3 py-1.5 rounded-md transition font-medium whitespace-nowrap ${
               activeTab === "monthly"
                 ? "bg-violet-500/20 text-violet-300 border border-violet-500/30"
                 : "text-slate-400 hover:text-slate-200"
@@ -111,7 +111,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
       </div>
 
       {/* Habit Comparison Guidance Banner */}
-      <div className="mb-6 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 flex items-start gap-2.5">
+      <div className="mb-4 sm:mb-6 p-3 sm:p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[10px] sm:text-xs text-slate-300 flex items-start gap-2 sm:gap-2.5">
         <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
         <div>
           <span className="font-semibold text-white">How Meter Billing Works:</span> Both habits use identical daily consumption and the same calendar month slab counter. Recharge timing cannot create an energy rate saving. Total cost represents the money deducted by the meter (Energy + 5% VAT + Applicable Monthly Fixed Charges), not the gross amount deposited.
@@ -228,7 +228,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
 
       {activeTab === "chart" && (
         <div className="space-y-4">
-          <div className="h-[320px] w-full">
+          <div className="h-[240px] sm:h-[280px] lg:h-[320px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -298,7 +298,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
 
       {activeTab === "monthly" && (
         <div className="overflow-x-auto rounded-xl border border-slate-800">
-          <table className="w-full text-left text-xs">
+          <table className="w-full text-left text-[10px] sm:text-xs min-w-[600px]">
             <thead className="bg-slate-800/80 text-slate-300">
               <tr>
                 <th className="p-3">Month</th>

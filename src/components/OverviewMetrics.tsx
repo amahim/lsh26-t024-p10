@@ -13,17 +13,17 @@ export const OverviewMetrics: React.FC<OverviewMetricsProps> = ({ history, caseI
   const isNegative = history.finalBalance <= 0;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       {/* 1. Rebuilt Current Balance */}
-      <div className={`p-5 rounded-2xl border transition-all ${
+      <div className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border transition-all ${
         isNegative
           ? "bg-rose-950/40 border-rose-500/50"
           : isLowBalance
           ? "bg-amber-950/30 border-amber-500/40"
           : "glass-panel glass-panel-hover"
       }`}>
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Reconstructed Balance
           </span>
           <div className={`p-2 rounded-xl border ${
@@ -37,7 +37,7 @@ export const OverviewMetrics: React.FC<OverviewMetricsProps> = ({ history, caseI
           </div>
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-white">
+          <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono tracking-tight text-white">
             {formatBDT(history.finalBalance)}
           </span>
         </div>
@@ -60,16 +60,16 @@ export const OverviewMetrics: React.FC<OverviewMetricsProps> = ({ history, caseI
       </div>
 
       {/* 2. Total Units Consumed */}
-      <div className="glass-panel glass-panel-hover p-5 rounded-2xl">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+      <div className="glass-panel glass-panel-hover p-3.5 sm:p-5 rounded-xl sm:rounded-2xl">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Total Units Consumed
           </span>
           <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
             <Zap className="w-4 h-4" />
           </div>
         </div>
-        <div className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-white">
+        <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono tracking-tight text-white">
           {formatUnits(history.totalUnitsConsumed)}
         </div>
         <div className="mt-2 text-xs text-slate-400 flex items-center justify-between">
@@ -81,16 +81,16 @@ export const OverviewMetrics: React.FC<OverviewMetricsProps> = ({ history, caseI
       </div>
 
       {/* 3. Total Money Consumed by Meter */}
-      <div className="glass-panel glass-panel-hover p-5 rounded-2xl">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+      <div className="glass-panel glass-panel-hover p-3.5 sm:p-5 rounded-xl sm:rounded-2xl">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Total Meter Deductions
           </span>
           <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
             <CreditCard className="w-4 h-4" />
           </div>
         </div>
-        <div className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-white">
+        <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono tracking-tight text-white">
           {formatBDT(history.totalCostConsumed)}
         </div>
         <div className="mt-2 text-xs text-slate-400 flex items-center justify-between">
@@ -100,16 +100,16 @@ export const OverviewMetrics: React.FC<OverviewMetricsProps> = ({ history, caseI
       </div>
 
       {/* 4. Total Recharges Deposited */}
-      <div className="glass-panel glass-panel-hover p-5 rounded-2xl">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+      <div className="glass-panel glass-panel-hover p-3.5 sm:p-5 rounded-xl sm:rounded-2xl">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
+          <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Total Recharges Added
           </span>
           <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20">
             <ArrowDownRight className="w-4 h-4" />
           </div>
         </div>
-        <div className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-white">
+        <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono tracking-tight text-white">
           {formatBDT(history.totalRecharged)}
         </div>
         <div className="mt-2 text-xs text-slate-400 flex items-center justify-between">

@@ -79,24 +79,24 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
       {/* ========================================================= */}
       {/* QUESTION 1: When Does Balance Run Out?                    */}
       {/* ========================================================= */}
-      <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between border-slate-800 hover:border-cyan-500/30 transition shadow-xl">
+      <div className="glass-panel p-4 sm:p-6 rounded-2xl flex flex-col justify-between border-slate-800 hover:border-cyan-500/30 transition shadow-xl">
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between gap-3 mb-4">
-            <div className="flex items-center gap-2.5">
+          <div className="flex items-start sm:items-center justify-between gap-2 mb-4">
+            <div className="flex items-center gap-2">
               <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                 <Clock className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-bold text-white tracking-tight">
+                  <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
                     Run-Out Date Forecast
                   </h3>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hidden sm:inline">
                     Forecast Engine
                   </span>
                 </div>
@@ -126,7 +126,7 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
           </div>
 
           {/* Daily Usage Controller */}
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 mb-5">
+          <div className="bg-slate-900/80 p-3 sm:p-4 rounded-xl border border-slate-800 mb-4 sm:mb-5">
             <div className="flex items-center justify-between text-xs mb-2">
               <span className="text-slate-300 font-medium">Usual Daily Consumption:</span>
               <span className="font-mono text-cyan-400 font-bold text-sm">
@@ -159,7 +159,7 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
             <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">
               Estimated Run-Out Date
             </div>
-            <div className="text-2xl sm:text-3xl font-extrabold font-mono text-white tracking-tight">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono text-white tracking-tight">
               {runOutResult.runOutDate ? (
                 <span>{runOutResult.runOutDate}</span>
               ) : (
@@ -188,22 +188,22 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
       {/* ========================================================= */}
       {/* QUESTION 2: Required Recharge for Target Date             */}
       {/* ========================================================= */}
-      <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between border-slate-800 hover:border-emerald-500/30 transition shadow-xl">
+      <div className="glass-panel p-4 sm:p-6 rounded-2xl flex flex-col justify-between border-slate-800 hover:border-emerald-500/30 transition shadow-xl">
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between gap-3 mb-4">
+          <div className="flex items-start sm:items-center justify-between gap-2 mb-4">
             <div className="flex items-center gap-2.5">
               <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <DollarSign className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-bold text-white tracking-tight">
-                    Target Date Budget Planner
-                  </h3>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    Budget Planner
-                  </span>
+                    <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                      Target Date Budget Planner
+                    </h3>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline">
+                      Budget Planner
+                    </span>
                 </div>
                 <p className="text-xs text-slate-400">
                   Exact BDT recharge needed today to sustain usage until your target date
@@ -231,7 +231,7 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
           </div>
 
           {/* Target Date Picker */}
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 mb-4">
+          <div className="bg-slate-900/80 p-3 sm:p-4 rounded-xl border border-slate-800 mb-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
               <span className="text-slate-300 font-medium flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-emerald-400" />
@@ -252,17 +252,17 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
           </div>
 
           {/* Recharge Recommendation Hero Banner */}
-          <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/40 mb-4">
-            <div className="flex items-center justify-between">
+          <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/40 mb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
               <div>
                 <div className="text-[11px] text-slate-400 uppercase font-semibold">
                   Required Recharge Today
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-0.5">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-mono text-emerald-400 mt-0.5">
                   {formatBDT(targetBreakdown.recommendedRechargeToday)}
                 </div>
               </div>
-              <div className="text-right text-xs">
+              <div className="sm:text-right text-xs">
                 <div className="text-slate-400">Total Projected Cost</div>
                 <div className="font-mono font-bold text-white">
                   {formatBDT(targetBreakdown.totalRequiredCost)}
@@ -275,7 +275,7 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
           </div>
 
           {/* 4-Way Itemized Decomposition Breakdown */}
-          <div className="space-y-2 text-xs bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+          <div className="space-y-2 text-[11px] sm:text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-800">
             <div className="font-semibold text-slate-300 flex items-center justify-between border-b border-slate-800 pb-1.5">
               <span>Itemized Cost Decomposition</span>
               <span className="text-[10px] text-emerald-400 font-normal">Mandatory Breakdown</span>

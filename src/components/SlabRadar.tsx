@@ -24,12 +24,12 @@ export const SlabRadar: React.FC<SlabRadarProps> = ({ proximity }) => {
     : "0.0";
 
   return (
-    <div className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 ${
+    <div className={`p-3.5 sm:p-5 rounded-2xl border transition-all duration-300 ${
       isNearNextSlab
         ? "bg-gradient-to-br from-amber-950/40 via-slate-900 to-slate-900 border-amber-500/40 shadow-lg shadow-amber-950/20"
         : "glass-panel glass-panel-hover"
     }`}>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+      <div className="flex flex-col gap-3 mb-3 sm:mb-4">
         <div className="flex items-center gap-2.5">
           <div className={`p-2 rounded-xl border ${
             isNearNextSlab
@@ -39,8 +39,8 @@ export const SlabRadar: React.FC<SlabRadarProps> = ({ proximity }) => {
             <Zap className="w-5 h-5" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-white tracking-wide">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <h3 className="text-xs sm:text-sm font-bold text-white tracking-wide">
                 Slab Proximity Radar
               </h3>
               {isNearNextSlab && (
@@ -49,15 +49,15 @@ export const SlabRadar: React.FC<SlabRadarProps> = ({ proximity }) => {
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-[10px] sm:text-xs text-slate-400">
               Active Tier: <span className="font-semibold text-slate-200">Slab {currentSlab.id} ({currentSlab.name})</span> @ ৳{currentSlab.rate.toFixed(2)}/unit
             </p>
           </div>
         </div>
 
         {/* Next Unit Cost Tag */}
-        <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl px-3 py-1.5 flex items-center justify-between sm:justify-start gap-3">
-          <span className="text-[11px] text-slate-400">Next Unit Cost (inc. VAT):</span>
+        <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl px-2.5 sm:px-3 py-1.5 flex items-center justify-between sm:justify-start gap-2 sm:gap-3">
+          <span className="text-[10px] sm:text-[11px] text-slate-400">Next Unit Cost (inc. VAT):</span>
           <span className="font-mono text-xs font-bold text-emerald-400">
             ৳{currentRateWithVat.toFixed(3)}
           </span>
@@ -66,7 +66,7 @@ export const SlabRadar: React.FC<SlabRadarProps> = ({ proximity }) => {
 
       {/* Progress Bar */}
       <div className="space-y-1.5 mb-3">
-        <div className="flex justify-between text-xs text-slate-400 font-mono">
+        <div className="flex flex-col xs:flex-row xs:justify-between gap-0.5 text-[10px] sm:text-xs text-slate-400 font-mono">
           <span>{currentMonthUnits} kWh used this month</span>
           <span>
             {nextSlab ? (
@@ -96,7 +96,7 @@ export const SlabRadar: React.FC<SlabRadarProps> = ({ proximity }) => {
 
       {/* Escalation Warning / Comparison Strip */}
       {nextSlab ? (
-        <div className="flex flex-wrap items-center justify-between gap-2 text-xs pt-1 border-t border-slate-800/80 text-slate-400">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center justify-between gap-1.5 sm:gap-2 text-[10px] sm:text-xs pt-1 border-t border-slate-800/80 text-slate-400">
           <div className="flex items-center gap-1.5">
             <TrendingUp className="w-3.5 h-3.5 text-slate-400" />
             <span>Next Bracket: <strong>Slab {nextSlab.id}</strong> (৳{nextSlab.rate.toFixed(2)} + 5% VAT = ৳{nextRateWithVat?.toFixed(3)})</span>

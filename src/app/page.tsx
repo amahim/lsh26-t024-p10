@@ -64,9 +64,9 @@ export default function DashboardPage() {
         onClose={() => setIsTariffModalOpen(false)}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-8 print:p-0 print:m-0 print:max-w-none print:space-y-0">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6 space-y-5 sm:space-y-8 print:p-0 print:m-0 print:max-w-none print:space-y-0">
         {/* Curated Preset Scenario Selector */}
-        <section className="glass-panel p-4 sm:p-5 rounded-2xl border-slate-800 print:hidden">
+        <section className="glass-panel p-3 sm:p-5 rounded-2xl border-slate-800 print:hidden">
           <div className="flex items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-emerald-400" />
@@ -79,7 +79,7 @@ export default function DashboardPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
             {PRESET_CASES.map((preset) => (
               <button
                 key={preset.id}
@@ -100,8 +100,8 @@ export default function DashboardPage() {
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   )}
                 </div>
-                <div className="text-xs font-semibold text-white mb-1">{preset.label}</div>
-                <p className="text-[11px] text-slate-400 leading-snug">{preset.description}</p>
+                <div className="text-xs font-semibold text-white mb-0.5 sm:mb-1">{preset.label}</div>
+                <p className="text-[10px] sm:text-[11px] text-slate-400 leading-snug">{preset.description}</p>
               </button>
             ))}
           </div>
@@ -159,7 +159,7 @@ export default function DashboardPage() {
 
       {/* Footer */}
       <footer className="mt-16 border-t border-slate-800/80 bg-slate-950/60 py-8 print:hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>Dhaka Prepaid Electricity Advisor • 100% Deterministic Domestic Tariff Engine</span>

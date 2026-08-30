@@ -50,19 +50,19 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
   };
 
   return (
-    <div className="glass-panel p-5 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
+    <div className="glass-panel p-4 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
       {/* Interactive Controls Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
             <Receipt className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-base font-bold text-white tracking-tight">
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
                 Single-Month Itemized Tariff Bill
               </h3>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 hidden sm:inline">
                 Detailed Invoice
               </span>
             </div>
@@ -106,7 +106,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
         className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden font-sans shadow-2xl"
       >
         {/* Top Official Banner */}
-        <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-teal-950 p-4 border-b border-emerald-500/30">
+        <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-teal-950 p-3 sm:p-4 border-b border-emerald-500/30">
           <div className="flex flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shadow-md shrink-0">
@@ -116,7 +116,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
                 <div className="text-[9px] font-extrabold uppercase tracking-widest text-emerald-400">
                   Dhaka Electricity Authority (DPDC / DESCO)
                 </div>
-                <h2 className="text-base sm:text-lg font-black text-white tracking-tight">
+                <h2 className="text-sm sm:text-lg font-black text-white tracking-tight">
                   Prepaid Meter Electricity Statement
                 </h2>
                 <div className="text-[10px] text-slate-300 flex items-center gap-2">
@@ -127,7 +127,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
               </div>
             </div>
 
-            <div className="bg-slate-900/90 border border-slate-700/80 rounded-lg p-2 text-right text-xs">
+            <div className="bg-slate-900/90 border border-slate-700/80 rounded-lg p-1.5 sm:p-2 text-right text-[10px] sm:text-xs">
               <div className="text-slate-400 text-[9px]">Invoice No:</div>
               <div className="font-mono font-bold text-amber-400 text-[11px]">{invoiceNo}</div>
               <div className="text-[9px] text-slate-400">
@@ -140,7 +140,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
         {/* Statement Body Container */}
         <div className="p-4">
           {/* Customer & Statement Meta Strip */}
-          <div className="grid grid-cols-4 gap-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 mb-3 text-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-900/80 p-2 sm:p-2.5 rounded-xl border border-slate-800 mb-3 text-xs">
             <div className="space-y-0.5">
               <div className="text-slate-400 text-[9px]">Total Units:</div>
               <div className="text-sm font-black font-mono text-cyan-400">
@@ -239,7 +239,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
           </div>
 
           {/* 2. Monthly Fixed Charges & Government Duties Section */}
-          <div className="grid grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
             {/* Fixed Charges Itemization */}
             <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800 space-y-1 text-[10px]">
               <div className="font-bold text-slate-200 uppercase tracking-wider border-b border-slate-800 pb-1 flex items-center justify-between text-[9px]">
@@ -294,7 +294,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
           </div>
 
           {/* Grand Total Highlight Banner */}
-          <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 border border-emerald-500/50 flex flex-row items-center justify-between gap-3 mb-2.5 shadow-lg">
+          <div className="p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 border border-emerald-500/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 mb-2.5 shadow-lg">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 shrink-0">
                 <ShieldCheck className="w-4 h-4" />
@@ -325,7 +325,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
           </div>
 
           {/* Official Verification Footer & Barcode */}
-          <div className="pt-2 border-t border-slate-800 flex flex-row items-center justify-between gap-3 text-[8.5px] text-slate-400">
+          <div className="pt-2 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 text-[8.5px] text-slate-400">
             <div className="flex items-center gap-2">
               <QrCode className="w-6 h-6 text-slate-500 shrink-0" />
               <div>

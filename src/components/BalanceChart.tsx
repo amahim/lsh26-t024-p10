@@ -36,15 +36,15 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
   const totalRechargeEvents = filteredData.filter((d) => d.rechargeAmount > 0).length;
 
   return (
-    <div className="glass-panel p-5 sm:p-6 rounded-2xl">
+    <div className="glass-panel p-4 sm:p-6 rounded-2xl">
       {/* Chart Header & Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-bold text-white tracking-tight">
+            <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
               Reconstructed Meter Balance Ledger
             </h2>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline">
               Interactive Trajectory
             </span>
           </div>
@@ -53,7 +53,7 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Month Selector */}
           <div className="flex items-center gap-1.5 bg-slate-900/80 border border-slate-700/60 rounded-lg px-2.5 py-1.5 text-xs text-slate-300">
             <Calendar className="w-3.5 h-3.5 text-slate-400" />
@@ -72,10 +72,10 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-xs">
+          <div className="flex bg-slate-900 border border-slate-700/60 rounded-lg p-0.5 text-[11px] sm:text-xs overflow-x-auto">
             <button
               onClick={() => setViewMode("combined")}
-              className={`px-3 py-1 rounded-md transition ${
+              className={`px-2 sm:px-3 py-1 rounded-md transition whitespace-nowrap ${
                 viewMode === "combined"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30"
                   : "text-slate-400 hover:text-slate-200"
@@ -85,7 +85,7 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
             </button>
             <button
               onClick={() => setViewMode("balance")}
-              className={`px-3 py-1 rounded-md transition ${
+              className={`px-2 sm:px-3 py-1 rounded-md transition whitespace-nowrap ${
                 viewMode === "balance"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30"
                   : "text-slate-400 hover:text-slate-200"
@@ -95,7 +95,7 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
             </button>
             <button
               onClick={() => setViewMode("daily_units")}
-              className={`px-3 py-1 rounded-md transition ${
+              className={`px-2 sm:px-3 py-1 rounded-md transition whitespace-nowrap ${
                 viewMode === "daily_units"
                   ? "bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30"
                   : "text-slate-400 hover:text-slate-200"
@@ -108,7 +108,7 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
       </div>
 
       {/* Chart Canvas */}
-      <div className="h-[360px] w-full">
+      <div className="h-[260px] sm:h-[320px] lg:h-[360px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={filteredData}
