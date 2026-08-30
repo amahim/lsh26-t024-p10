@@ -35,17 +35,9 @@
     {
       "registered_name": "Md. Arif Bin Hashem Mahim",
       "github_username": "amahim",
-      "major_contribution": "Implemented the end-to-end Dhaka prepaid electricity advisory web application: deterministic 6-tier LT-A tariff engine (history reconstruction, balance trajectory, run-out predictor, target date budget planner, and habit comparator), interactive dashboard UI, real-time slab proximity radar, granular ledger with CSV export, custom reconciler, mobile/tablet responsiveness, and official 1-page print invoice.",
+      "major_contribution": "Problem P10 Lead (Repository: lsh26-t024-p10): Lead developer for team's second problem (Prepaid Meter Recharge Advisor), implementing multi-slab tariff calculation engine, 6-month daily consumption simulation, recharge habit comparison, and P10 test validation.",
       "evidence_paths_or_commits": [
-        "src/lib/meter-engine.ts",
-        "src/app/page.tsx",
-        "src/components/BalanceChart.tsx",
-        "src/components/PredictorCards.tsx",
-        "src/components/HabitComparator.tsx",
-        "src/components/MonthlyBillInvoice.tsx",
-        "src/components/HistoryLedger.tsx",
-        "src/components/CustomDataReconciler.tsx",
-        "src/components/SlabRadar.tsx"
+        "https://github.com/amahim/lsh26-t024-p10"
       ]
     },
     {

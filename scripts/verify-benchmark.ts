@@ -17,7 +17,7 @@ interface PublicDataset {
 
 function runBenchmark() {
   console.log("🚀 Starting verification of benchmark dataset...");
-  const jsonPath = path.resolve(__dirname, "../P10_prepaid_meter_public.json");
+  const jsonPath = path.resolve(__dirname, "../public/data/P10_prepaid_meter_public.json");
 
   if (!fs.existsSync(jsonPath)) {
     console.error(`Dataset not found at ${jsonPath}`);

@@ -1,4 +1,4 @@
-import rawData from "../../P10_prepaid_meter_public.json";
+import rawData from "../../public/data/P10_prepaid_meter_public.json";
 import { TestCaseData } from "@/types/meter";
 
 export const PUBLIC_CASES: TestCaseData[] = rawData.cases as TestCaseData[];
