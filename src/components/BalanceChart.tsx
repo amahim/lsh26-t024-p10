@@ -161,13 +161,15 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
               />
             )}
 
-            <ReferenceLine
-              yAxisId="balance"
-              y={0}
-              stroke="#ef4444"
-              strokeDasharray="4 4"
-              label={{ value: "0 BDT", fill: "#ef4444", fontSize: 10, position: "insideBottomLeft" }}
-            />
+            {(viewMode === "balance" || viewMode === "combined") && (
+              <ReferenceLine
+                yAxisId="balance"
+                y={0}
+                stroke="#ef4444"
+                strokeDasharray="4 4"
+                label={{ value: "0 BDT", fill: "#ef4444", fontSize: 10, position: "insideBottomLeft" }}
+              />
+            )}
 
             <Tooltip
               content={({ active, payload }) => {

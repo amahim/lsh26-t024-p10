@@ -165,7 +165,7 @@ export default function DashboardPage() {
             <span>Dhaka Prepaid Electricity Advisor • 100% Deterministic Domestic Tariff Engine</span>
           </div>
           <div className="flex items-center gap-4 text-slate-400">
-            <span>Judge Rulings R-16 & R-33 Verified</span>
+            <span>Domestic LT-A Tariff Verified</span>
             <span>MIT License</span>
           </div>
         </div>

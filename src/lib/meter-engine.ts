@@ -434,8 +434,7 @@ export function calculateRechargeForTargetDate(
 
 /**
  * Habit Comparison Simulator:
- * Compares "Low Balance" vs "Monthly 1st" recharge habits over identical 3-month consumption.
- * Adheres strictly to Judge Rulings R-16 & R-33.
+ * Compares "Low Balance" vs "Monthly 1st" recharge habits over identical consumption history.
  */
 export function simulateHabitComparison(
   config: HabitComparisonConfig,
@@ -707,7 +706,7 @@ export function simulateHabitComparison(
   let explanation = "";
   if (Math.abs(costDiff) < 0.01) {
     explanation =
-      "Both habits cost exactly the same (R-16 / R-33). Under identical consumption, cumulative slab energy costs and 5% VAT are identical. Fixed monthly charges (82 BDT/mo) were deducted identically.";
+      "Both habits cost exactly the same. Under identical consumption, cumulative slab energy costs and 5% VAT are identical. Fixed monthly charges (82 BDT/mo) were deducted identically.";
   } else if (costDiff > 0) {
     explanation = `The 1st-of-month habit consumed ৳${costDiff.toFixed(2)} less in total meter deductions. Note: energy tariff rates are identical; the difference is driven by fixed charge occurrence differences across months.`;
   } else {

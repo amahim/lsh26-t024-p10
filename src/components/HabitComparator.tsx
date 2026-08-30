@@ -110,11 +110,11 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
         </div>
       </div>
 
-      {/* R-16 & R-33 Clarification Banner */}
+      {/* Habit Comparison Guidance Banner */}
       <div className="mb-6 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 flex items-start gap-2.5">
         <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
         <div>
-          <span className="font-semibold text-white">Judge Clarifications (R-16 & R-33):</span> Both habits use identical daily consumption and the same calendar month slab counter. Recharge timing cannot create an energy rate saving. "Cost" is the money consumed by the meter (Energy + VAT + Applicable Monthly Fixed Charges), not the gross amount deposited.
+          <span className="font-semibold text-white">How Meter Billing Works:</span> Both habits use identical daily consumption and the same calendar month slab counter. Recharge timing cannot create an energy rate saving. Total cost represents the money deducted by the meter (Energy + 5% VAT + Applicable Monthly Fixed Charges), not the gross amount deposited.
         </div>
       </div>
 

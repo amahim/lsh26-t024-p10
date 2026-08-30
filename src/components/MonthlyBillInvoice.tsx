@@ -47,7 +47,7 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
                 Single-Month Itemized Tariff Bill
               </h3>
               <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                Bonus 3
+                Detailed Invoice
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">

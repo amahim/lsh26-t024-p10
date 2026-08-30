@@ -88,7 +88,7 @@ export const TariffModal: React.FC<TariffModalProps> = ({ isOpen, onClose }) => 
         <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-start gap-2.5">
           <AlertTriangle className="w-5 h-5 shrink-0 text-amber-400" />
           <div>
-            <span className="font-semibold">Judge Rulings R-16 & R-33 Compliance:</span> Recharge timing cannot alter energy tariff rates. Habit comparison runs on 100% identical daily consumption and slab progression.
+            <span className="font-semibold">Tariff Notice:</span> Recharge timing cannot alter energy tariff rates. Habit comparison runs on 100% identical daily consumption and slab progression.
           </div>
         </div>
       </div>

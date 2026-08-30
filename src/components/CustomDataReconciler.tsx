@@ -72,7 +72,7 @@ export const CustomDataReconciler: React.FC = () => {
               Real Meter Recharge Reconciler & CSV Importer
             </h3>
             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-              Bonus 2
+              Audit Tool
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-0.5">
