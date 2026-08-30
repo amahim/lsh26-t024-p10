@@ -64,9 +64,9 @@ export default function DashboardPage() {
         onClose={() => setIsTariffModalOpen(false)}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-8 print:p-0 print:m-0 print:max-w-none print:space-y-0">
         {/* Curated Preset Scenario Selector */}
-        <section className="glass-panel p-4 sm:p-5 rounded-2xl border-slate-800">
+        <section className="glass-panel p-4 sm:p-5 rounded-2xl border-slate-800 print:hidden">
           <div className="flex items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-emerald-400" />
@@ -108,22 +108,22 @@ export default function DashboardPage() {
         </section>
 
         {/* Bonus 1: Live Slab Proximity Radar */}
-        <section>
+        <section className="print:hidden">
           <SlabRadar proximity={slabProximity} />
         </section>
 
         {/* Core KPI Metrics */}
-        <section>
+        <section className="print:hidden">
           <OverviewMetrics history={historyResult} caseId={activeCase.case_id} />
         </section>
 
         {/* MVP 2: Reconstructed Meter Balance Interactive Chart */}
-        <section>
+        <section className="print:hidden">
           <BalanceChart timeline={historyResult.timeline} />
         </section>
 
         {/* MVP 3: Question A (Run-Out Date) & Question B (Target Date Recharge Breakdown) */}
-        <section>
+        <section className="print:hidden">
           <PredictorCards
             currentBalance={historyResult.finalBalance}
             todayDate={activeCase.today}
@@ -134,31 +134,31 @@ export default function DashboardPage() {
         </section>
 
         {/* MVP 4: Recharge Habits Comparative Simulation */}
-        <section>
+        <section className="print:hidden">
           <HabitComparator
             comparisonResult={habitComparisonResult}
             comparisonMonths={activeCase.comparison.months}
           />
         </section>
 
-        {/* Bonus 3: Single-Month Itemized Tariff Bill */}
-        <section>
+        {/* Single-Month Itemized Tariff Bill */}
+        <section className="print:m-0 print:p-0">
           <MonthlyBillInvoice timeline={historyResult.timeline} />
         </section>
 
         {/* Granular History Ledger (All recorded days) */}
-        <section>
+        <section className="print:hidden">
           <HistoryLedger timeline={historyResult.timeline} />
         </section>
 
         {/* Bonus 2: Custom Data Reconciler & CSV Importer */}
-        <section>
+        <section className="print:hidden">
           <CustomDataReconciler />
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 border-t border-slate-800/80 bg-slate-950/60 py-8">
+      <footer className="mt-16 border-t border-slate-800/80 bg-slate-950/60 py-8 print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />

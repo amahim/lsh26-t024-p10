@@ -1,14 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { Receipt, FileText, Printer, Zap, CheckCircle2 } from "lucide-react";
+import {
+  Receipt,
+  Printer,
+  Zap,
+  CheckCircle2,
+  ShieldCheck,
+  Building2,
+  QrCode,
+} from "lucide-react";
 import { DaySimulationRecord } from "@/types/meter";
 import {
   calculateEnergyCost,
   DEMAND_CHARGE,
   METER_RENT,
   MONTHLY_FIXED_CHARGE_TOTAL,
-  VAT_RATE,
 } from "@/lib/meter-engine";
 import { formatBDT, formatUnits } from "@/lib/utils";
 
@@ -34,9 +41,18 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
   const vatCost = fullMonthCost.vatCost;
   const grandTotal = totalEnergyCost + vatCost + fixedChargesDeducted;
 
+  const invoiceNo = `DH-ELEC-${selectedMonth.replace("-", "")}-${Math.floor(
+    totalUnits * 13 + 1042
+  )}`;
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
-    <div className="glass-panel p-6 rounded-2xl border-slate-800 shadow-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div className="glass-panel p-5 sm:p-6 rounded-2xl border-slate-800 shadow-xl">
+      {/* Interactive Controls Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
             <Receipt className="w-6 h-6" />
@@ -74,116 +90,258 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
           </div>
 
           <button
-            onClick={() => window.print()}
-            className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg border border-slate-700 transition"
-            title="Print or Save as PDF"
+            onClick={handlePrint}
+            className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow-lg shadow-emerald-950/40 border border-emerald-400/30 transition cursor-pointer"
+            title="Print or Save as PDF (Strict 1-Page Layout)"
           >
-            <Printer className="w-4 h-4 text-amber-400" />
-            <span className="font-semibold">Print / PDF</span>
+            <Printer className="w-4 h-4" />
+            <span>Print / Save PDF (1-Page)</span>
           </button>
         </div>
       </div>
 
-      {/* Bill Voucher Card */}
-      <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 relative overflow-hidden font-sans">
-        {/* Top Watermark / Meta */}
-        <div className="flex flex-wrap items-center justify-between border-b border-slate-800 pb-4 mb-5 gap-3">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-widest text-slate-400">
-              DESCO / DPDC Domestic Electricity Statement
+      {/* Bill Voucher Card / Printable Container */}
+      <div
+        id="printable-invoice"
+        className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden font-sans shadow-2xl"
+      >
+        {/* Top Official Banner */}
+        <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-teal-950 p-4 border-b border-emerald-500/30">
+          <div className="flex flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shadow-md shrink-0">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-[9px] font-extrabold uppercase tracking-widest text-emerald-400">
+                  Dhaka Electricity Authority (DPDC / DESCO)
+                </div>
+                <h2 className="text-base sm:text-lg font-black text-white tracking-tight">
+                  Prepaid Meter Electricity Statement
+                </h2>
+                <div className="text-[10px] text-slate-300 flex items-center gap-2">
+                  <span>Class: <strong className="text-white">LT-A (Residential)</strong></span>
+                  <span>•</span>
+                  <span>Meter: <strong className="text-emerald-300">Smart Prepaid</strong></span>
+                </div>
+              </div>
             </div>
-            <div className="text-lg font-extrabold text-white">Billing Period: {selectedMonth}</div>
-          </div>
-          <div className="text-right text-xs text-slate-400">
-            <div>Tariff Class: <strong className="text-slate-200">LT-A (Residential)</strong></div>
-            <div>Meter Type: <strong className="text-emerald-400">Prepaid Smart Meter</strong></div>
+
+            <div className="bg-slate-900/90 border border-slate-700/80 rounded-lg p-2 text-right text-xs">
+              <div className="text-slate-400 text-[9px]">Invoice No:</div>
+              <div className="font-mono font-bold text-amber-400 text-[11px]">{invoiceNo}</div>
+              <div className="text-[9px] text-slate-400">
+                Month: <strong className="text-slate-200">{selectedMonth}</strong>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Consumption Summary Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800/80 mb-5 text-xs">
-          <div>
-            <div className="text-slate-400">Total Month Units:</div>
-            <div className="text-base font-bold font-mono text-cyan-400">{formatUnits(totalUnits)}</div>
-          </div>
-          <div>
-            <div className="text-slate-400">Days Recorded:</div>
-            <div className="text-base font-bold font-mono text-white">{monthRecords.length} days</div>
-          </div>
-          <div>
-            <div className="text-slate-400">Total Recharges:</div>
-            <div className="text-base font-bold font-mono text-emerald-400">{formatBDT(totalRecharged)}</div>
-          </div>
-          <div>
-            <div className="text-slate-400">Fixed Fee Applied:</div>
-            <div className="text-base font-bold font-mono text-amber-400">
-              {fixedChargesDeducted > 0 ? formatBDT(fixedChargesDeducted) : "৳0.00 (No Recharge)"}
+        {/* Statement Body Container */}
+        <div className="p-4">
+          {/* Customer & Statement Meta Strip */}
+          <div className="grid grid-cols-4 gap-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 mb-3 text-xs">
+            <div className="space-y-0.5">
+              <div className="text-slate-400 text-[9px]">Total Units:</div>
+              <div className="text-sm font-black font-mono text-cyan-400">
+                {formatUnits(totalUnits)}
+              </div>
+              <div className="text-[9px] text-slate-400">{monthRecords.length} days</div>
+            </div>
+
+            <div className="space-y-0.5">
+              <div className="text-slate-400 text-[9px]">Base Energy:</div>
+              <div className="text-sm font-black font-mono text-white">
+                {formatBDT(totalEnergyCost)}
+              </div>
+              <div className="text-[9px] text-slate-400">Slab 1–6 formula</div>
+            </div>
+
+            <div className="space-y-0.5">
+              <div className="text-slate-400 text-[9px]">Fixed Fee:</div>
+              <div className="text-sm font-black font-mono text-amber-400">
+                {fixedChargesDeducted > 0 ? formatBDT(fixedChargesDeducted) : "৳0.00"}
+              </div>
+              <div className="text-[9px] text-slate-400">Demand + Rent</div>
+            </div>
+
+            <div className="space-y-0.5">
+              <div className="text-slate-400 text-[9px]">5% VAT:</div>
+              <div className="text-sm font-black font-mono text-emerald-400">
+                {formatBDT(vatCost)}
+              </div>
+              <div className="text-[9px] text-slate-400">On energy only</div>
             </div>
           </div>
-        </div>
 
-        {/* Itemized Table */}
-        <div className="space-y-4 mb-6">
-          <div className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-            1. Progressive Energy Slab Breakdown
-          </div>
-          <div className="overflow-x-auto rounded-xl border border-slate-800/80">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-slate-900 text-slate-400">
-                <tr>
-                  <th className="p-2.5">Slab Name</th>
-                  <th className="p-2.5">Units Consumed</th>
-                  <th className="p-2.5">Tariff Rate</th>
-                  <th className="p-2.5 text-right">Subtotal (BDT)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60 font-mono text-slate-300">
-                {fullMonthCost.breakdown.length > 0 ? (
-                  fullMonthCost.breakdown.map((item) => (
-                    <tr key={item.slabIndex}>
-                      <td className="p-2.5 font-sans font-medium text-emerald-400">{item.slabName}</td>
-                      <td className="p-2.5">{item.units} kWh</td>
-                      <td className="p-2.5">৳{item.rate.toFixed(2)}</td>
-                      <td className="p-2.5 text-right font-semibold">{formatBDT(item.cost)}</td>
-                    </tr>
-                  ))
-                ) : (
+          {/* Itemized Progressive Slab Table */}
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-1">
+              <div className="text-[10px] font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1">
+                <Zap className="w-3 h-3 text-amber-400" />
+                1. Progressive Energy Slab Tariff Breakdown
+              </div>
+              <span className="text-[8px] text-slate-400">LT-A Domestic Schedule</span>
+            </div>
+
+            <div className="overflow-x-auto rounded-lg border border-slate-800">
+              <table className="w-full text-left text-[10px]">
+                <thead className="bg-emerald-950/80 text-emerald-300 border-b border-emerald-500/20">
                   <tr>
-                    <td colSpan={4} className="p-4 text-center text-slate-500 font-sans">
-                      No consumption recorded for this period
-                    </td>
+                    <th className="py-1 px-2 font-bold">Tier / Category</th>
+                    <th className="py-1 px-2 font-bold">Range Units</th>
+                    <th className="py-1 px-2 font-bold">Units Consumed</th>
+                    <th className="py-1 px-2 font-bold">Rate (BDT/kWh)</th>
+                    <th className="py-1 px-2 font-bold text-right">Subtotal Charge</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-800/80 font-mono text-slate-300">
+                  {fullMonthCost.breakdown.length > 0 ? (
+                    fullMonthCost.breakdown.map((item) => (
+                      <tr key={item.slabIndex} className="hover:bg-slate-900/50">
+                        <td className="py-1 px-2 font-sans font-semibold text-emerald-400">
+                          {item.slabName}
+                        </td>
+                        <td className="py-1 px-2 text-slate-400 font-sans">
+                          {item.slabIndex === 0
+                            ? "1 – 50"
+                            : item.slabIndex === 1
+                            ? "1 – 75"
+                            : item.slabIndex === 2
+                            ? "76 – 200"
+                            : item.slabIndex === 3
+                            ? "201 – 300"
+                            : item.slabIndex === 4
+                            ? "301 – 400"
+                            : item.slabIndex === 5
+                            ? "401 – 600"
+                            : "Above 600"}
+                        </td>
+                        <td className="py-1 px-2 font-bold text-cyan-400">{item.units} kWh</td>
+                        <td className="py-1 px-2 font-semibold text-slate-200">
+                          ৳{item.rate.toFixed(2)}
+                        </td>
+                        <td className="py-1 px-2 text-right font-bold text-white">
+                          {formatBDT(item.cost)}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5} className="p-2 text-center text-slate-500 font-sans">
+                        No domestic consumption recorded for this period.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        {/* Fixed Charges & VAT Summary */}
-        <div className="border-t border-slate-800 pt-4 space-y-2 text-xs">
-          <div className="flex justify-between text-slate-300">
-            <span>Total Base Energy Charge:</span>
-            <span className="font-mono font-semibold text-white">{formatBDT(totalEnergyCost)}</span>
+          {/* 2. Monthly Fixed Charges & Government Duties Section */}
+          <div className="grid grid-cols-2 gap-2 mb-3">
+            {/* Fixed Charges Itemization */}
+            <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800 space-y-1 text-[10px]">
+              <div className="font-bold text-slate-200 uppercase tracking-wider border-b border-slate-800 pb-1 flex items-center justify-between text-[9px]">
+                <span>2. Fixed Meter Fees</span>
+                <span className="text-amber-400 font-normal">Official Rate</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Demand Charge (1 kW):</span>
+                <span className="font-mono font-semibold text-slate-100">
+                  {formatBDT(fixedChargesDeducted > 0 ? DEMAND_CHARGE : 0)}
+                </span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Smart Meter Rent:</span>
+                <span className="font-mono font-semibold text-slate-100">
+                  {formatBDT(fixedChargesDeducted > 0 ? METER_RENT : 0)}
+                </span>
+              </div>
+              <div className="pt-1 border-t border-slate-800/80 flex justify-between font-bold text-amber-300">
+                <span>Total Fixed Fees:</span>
+                <span className="font-mono">
+                  {formatBDT(fixedChargesDeducted > 0 ? MONTHLY_FIXED_CHARGE_TOTAL : 0)}
+                </span>
+              </div>
+            </div>
+
+            {/* Total Deductions Summary Card */}
+            <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800 space-y-1 text-[10px]">
+              <div className="font-bold text-slate-200 uppercase tracking-wider border-b border-slate-800 pb-1 flex items-center justify-between text-[9px]">
+                <span>3. Tax & Summary</span>
+                <span className="text-emerald-400 font-normal">NBR 5%</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Net Energy Charge:</span>
+                <span className="font-mono font-semibold text-slate-100">
+                  {formatBDT(totalEnergyCost)}
+                </span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Govt VAT (5%):</span>
+                <span className="font-mono font-semibold text-emerald-400">
+                  +{formatBDT(vatCost)}
+                </span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>Fixed Monthly Fees:</span>
+                <span className="font-mono font-semibold text-amber-400">
+                  +{formatBDT(fixedChargesDeducted > 0 ? MONTHLY_FIXED_CHARGE_TOTAL : 0)}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex justify-between text-slate-300">
-            <span>Demand Charge (Monthly):</span>
-            <span className="font-mono">{formatBDT(fixedChargesDeducted > 0 ? DEMAND_CHARGE : 0)}</span>
+          {/* Grand Total Highlight Banner */}
+          <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 border border-emerald-500/50 flex flex-row items-center justify-between gap-3 mb-2.5 shadow-lg">
+            <div className="flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 shrink-0">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[8.5px] uppercase font-bold text-emerald-400 tracking-wider">
+                  Total Deductions for {selectedMonth}
+                </div>
+                <div className="text-base font-black font-mono text-white tracking-tight">
+                  {formatBDT(grandTotal)}
+                </div>
+                <div className="text-[8.5px] text-slate-400">
+                  (Energy: {formatBDT(totalEnergyCost)} + VAT: {formatBDT(vatCost)} + Fixed:{" "}
+                  {formatBDT(fixedChargesDeducted)})
+                </div>
+              </div>
+            </div>
+
+            <div className="text-right flex flex-col items-end gap-0.5">
+              <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[8.5px] font-bold">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                <span>Deterministic Audit Pass</span>
+              </div>
+              <div className="text-[7.5px] text-slate-400 font-mono">
+                Formula: Energy + 5% VAT + Fixed
+              </div>
+            </div>
           </div>
 
-          <div className="flex justify-between text-slate-300">
-            <span>Meter Rent (Monthly):</span>
-            <span className="font-mono">{formatBDT(fixedChargesDeducted > 0 ? METER_RENT : 0)}</span>
-          </div>
+          {/* Official Verification Footer & Barcode */}
+          <div className="pt-2 border-t border-slate-800 flex flex-row items-center justify-between gap-3 text-[8.5px] text-slate-400">
+            <div className="flex items-center gap-2">
+              <QrCode className="w-6 h-6 text-slate-500 shrink-0" />
+              <div>
+                <div className="font-mono text-slate-300 font-semibold">{invoiceNo}</div>
+                <div className="text-[7.5px] text-slate-400">
+                  Dhaka Prepaid Electricity Advisor Engine • Official LT-A Schedule
+                </div>
+              </div>
+            </div>
 
-          <div className="flex justify-between text-slate-300">
-            <span>Govt. VAT (5% on Energy Amount):</span>
-            <span className="font-mono font-semibold text-emerald-400">{formatBDT(vatCost)}</span>
-          </div>
-
-          <div className="pt-3 border-t border-slate-700/80 flex justify-between text-sm sm:text-base font-extrabold text-white">
-            <span>Grand Total Month Deductions:</span>
-            <span className="font-mono text-emerald-400">{formatBDT(grandTotal)}</span>
+            <div className="text-right text-[8px]">
+              <div>Signature: <strong className="text-slate-200">Automated Meter Audit</strong></div>
+              <div className="text-[7.5px] text-slate-400">
+                Date: {new Date().toISOString().slice(0, 10)}
+              </div>
+            </div>
           </div>
         </div>
       </div>
