@@ -49,7 +49,7 @@ export default function DashboardPage() {
   }, [activeCase]);
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 pb-16 selection:bg-emerald-500 selection:text-slate-900">
+    <div className="min-h-screen bg-[#090d16] text-slate-100 pb-16 selection:bg-emerald-500 selection:text-slate-900 print:bg-white print:text-black print:pb-0 print:min-h-0">
       {/* Top Navigation */}
       <Navbar
         cases={PUBLIC_CASES}
