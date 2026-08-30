@@ -71,7 +71,7 @@ export default function DashboardPage() {
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                Curated Household Case Scenarios (MVP 1 Showcase)
+                Curated Household Case Scenarios
               </span>
             </div>
             <span className="text-[11px] text-slate-400 hidden sm:inline">

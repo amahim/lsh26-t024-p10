@@ -12,6 +12,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Layers,
+  Copy,
+  Check,
 } from "lucide-react";
 import {
   predictRunOutDate,
@@ -37,6 +39,8 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
 }) => {
   // Question A state
   const [dailyUnits, setDailyUnits] = useState<number>(defaultDailyUnits);
+  const [copiedQ1, setCopiedQ1] = useState(false);
+  const [copiedQ2, setCopiedQ2] = useState(false);
 
   // Question B state
   const [targetDate, setTargetDate] = useState<string>(
@@ -60,6 +64,20 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
     false
   );
 
+  const handleCopyQ1 = () => {
+    const text = `Dhaka Prepaid Meter Advisory:\n- Current Balance: ${formatBDT(currentBalance)}\n- Daily Consumption: ${dailyUnits} kWh/day\n- Estimated Run-Out Date: ${runOutResult.runOutDate || "N/A"}\n- Days Remaining: ${runOutResult.daysRemaining} days`;
+    navigator.clipboard.writeText(text);
+    setCopiedQ1(true);
+    setTimeout(() => setCopiedQ1(false), 2000);
+  };
+
+  const handleCopyQ2 = () => {
+    const text = `Dhaka Prepaid Meter Recharge Budget:\n- Target Date: ${targetDate} (${targetBreakdown.totalDays} days)\n- Projected Energy: ${targetBreakdown.totalUnits} kWh\n- Recommended Recharge Today: ${formatBDT(targetBreakdown.recommendedRechargeToday)}\n- Total Projected Cost: ${formatBDT(targetBreakdown.totalRequiredCost)}\n- Current Balance: ${formatBDT(currentBalance)}`;
+    navigator.clipboard.writeText(text);
+    setCopiedQ2(true);
+    setTimeout(() => setCopiedQ2(false), 2000);
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* ========================================================= */}
@@ -76,10 +94,10 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-base font-bold text-white tracking-tight">
-                    Question 1: Run-Out Date Forecast
+                    Run-Out Date Forecast
                   </h3>
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                    MVP 3.A
+                    Forecast Engine
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
@@ -87,6 +105,24 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
                 </p>
               </div>
             </div>
+
+            <button
+              onClick={handleCopyQ1}
+              className="flex items-center gap-1 text-[11px] bg-slate-800/80 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-slate-700 transition shrink-0"
+              title="Copy forecast summary"
+            >
+              {copiedQ1 ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400 font-semibold">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Daily Usage Controller */}
@@ -163,10 +199,10 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-base font-bold text-white tracking-tight">
-                    Question 2: Target Date Budget Planner
+                    Target Date Budget Planner
                   </h3>
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    MVP 3.B
+                    Budget Planner
                   </span>
                 </div>
                 <p className="text-xs text-slate-400">
@@ -174,6 +210,24 @@ export const PredictorCards: React.FC<PredictorCardsProps> = ({
                 </p>
               </div>
             </div>
+
+            <button
+              onClick={handleCopyQ2}
+              className="flex items-center gap-1 text-[11px] bg-slate-800/80 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-slate-700 transition shrink-0"
+              title="Copy budget summary"
+            >
+              {copiedQ2 ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400 font-semibold">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Target Date Picker */}

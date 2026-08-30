@@ -99,6 +99,63 @@ export const HistoryLedger: React.FC<HistoryLedgerProps> = ({ timeline }) => {
               Slab 4+ Days
             </button>
           </div>
+
+          {/* Export CSV Button */}
+          <button
+            onClick={() => {
+              const headers = [
+                "Date",
+                "Day Index",
+                "Opening Balance (BDT)",
+                "Recharge Amount (BDT)",
+                "Fixed Charges Deducted (BDT)",
+                "Daily Consumption (kWh)",
+                "Active Slab",
+                "Slab Rate (BDT/unit)",
+                "Month Cumulative Units (kWh)",
+                "Energy Cost (BDT)",
+                "VAT 5% (BDT)",
+                "Total Daily Deduction (BDT)",
+                "Closing Balance (BDT)",
+              ];
+
+              const rows = timeline.map((d) => [
+                d.date,
+                d.dayIndex,
+                d.startOfDayBalance.toFixed(2),
+                d.rechargeAmount.toFixed(2),
+                d.fixedChargesDeducted.toFixed(2),
+                d.units.toFixed(2),
+                `Slab ${d.activeSlabId}`,
+                d.activeSlabRate.toFixed(2),
+                d.endOfMonthUnits.toFixed(2),
+                d.energyCost.toFixed(2),
+                d.vatCost.toFixed(2),
+                d.totalDailyCost.toFixed(2),
+                d.endOfDayBalance.toFixed(2),
+              ]);
+
+              const csvContent =
+                "data:text/csv;charset=utf-8," +
+                [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
+
+              const encodedUri = encodeURI(csvContent);
+              const link = document.createElement("a");
+              link.setAttribute("href", encodedUri);
+              link.setAttribute(
+                "download",
+                `dhaka_prepaid_meter_ledger_${timeline[0]?.date || "export"}.csv`
+              );
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+            className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition"
+            title="Download complete ledger as CSV file"
+          >
+            <Download className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="font-semibold">Export CSV</span>
+          </button>
         </div>
       </div>
 

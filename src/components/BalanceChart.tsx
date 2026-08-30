@@ -45,7 +45,7 @@ export const BalanceChart: React.FC<BalanceChartProps> = ({ timeline }) => {
               Reconstructed Meter Balance Ledger
             </h2>
             <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              MVP 2
+              Interactive Trajectory
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-0.5">

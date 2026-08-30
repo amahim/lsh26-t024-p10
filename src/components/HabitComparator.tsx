@@ -66,7 +66,7 @@ export const HabitComparator: React.FC<HabitComparatorProps> = ({
                 Recharge Habits Comparative Simulation
               </h2>
               <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">
-                MVP 4
+                Behavior Simulation
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">

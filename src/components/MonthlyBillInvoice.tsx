@@ -56,20 +56,31 @@ export const MonthlyBillInvoice: React.FC<MonthlyBillInvoiceProps> = ({ timeline
           </div>
         </div>
 
-        {/* Month Picker */}
-        <div className="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300">
-          <span>Billing Month:</span>
-          <select
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
-            className="bg-transparent text-amber-400 font-bold focus:outline-none cursor-pointer"
+        {/* Controls: Month Picker & Print Button */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+            <span>Billing Month:</span>
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="bg-transparent text-amber-400 font-bold focus:outline-none cursor-pointer"
+            >
+              {months.map((m) => (
+                <option key={m} value={m} className="bg-slate-900 text-slate-200">
+                  {m}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            onClick={() => window.print()}
+            className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg border border-slate-700 transition"
+            title="Print or Save as PDF"
           >
-            {months.map((m) => (
-              <option key={m} value={m} className="bg-slate-900 text-slate-200">
-                {m}
-              </option>
-            ))}
-          </select>
+            <Printer className="w-4 h-4 text-amber-400" />
+            <span className="font-semibold">Print / PDF</span>
+          </button>
         </div>
       </div>
 
